@@ -4311,7 +4311,7 @@ Usages:
 
 ### Translate.getClientSideTranslationKeys
 
-*Defined in [Piwik/Translation/Translator](https://github.com/matomo-org/matomo/blob/5.x-dev/core/Translation/Translator.php) in line [264](https://github.com/matomo-org/matomo/blob/5.x-dev/core/Translation/Translator.php#L264)*
+*Defined in [Piwik/Translation/Translator](https://github.com/matomo-org/matomo/blob/5.x-dev/core/Translation/Translator.php) in line [273](https://github.com/matomo-org/matomo/blob/5.x-dev/core/Translation/Translator.php#L273)*
 
 Triggered before generating the JavaScript code that allows i18n strings to be used
 in the browser. Plugins should subscribe to this event to specify which translations
