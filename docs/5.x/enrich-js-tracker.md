@@ -7,7 +7,7 @@ title: JS Tracker
 You can add additional code to the `matomo.js` JavaScript tracker. This allows you for example to:
 
 * configure the Matomo JavaScript tracker in a certain way to ensure the same behaviour is applied across all sites. For example enforcing that cookies are disabled on all sites.
-* track additional information about the visitor such as tracking additional browser plugins or other browser or device data.  
+* track additional information about the visitor such as tracking additional browser plugins or other browser or device data.
 * add additional analytics features to the tracker such as JS error tracking
 
 ## Enriching the tracker:
@@ -20,7 +20,7 @@ To enrich the tracker create a file named `tracker.js` in your Matomo plugin dir
     function init() {
         // Add your plugin code here. For example to enforce disabling cookies:
         window._paq = window._paq || [];
-        winodw._paq.push(['disableCookies']);
+        window._paq.push(['disableCookies']);
     }
 
     if ('object' === typeof window.Matomo) {
@@ -34,7 +34,7 @@ To enrich the tracker create a file named `tracker.js` in your Matomo plugin dir
         window.matomoPluginAsyncInit.push(init);
     }
 
-})(); 
+})();
 ```
 
 ### Updating the JS tracker
@@ -48,7 +48,7 @@ In order to test your tracker integration, execute the following console command
 This will merge the content of your `tracker.js` file with the JS tracker template from `$matomoRootDir/js/piwik.min.js` and save the
 output in the regular `$matomoRootDir/matomo.js` tracker file. Make sure to always clear your browser cache when you test changes.
 
-When a user installs your plugin, Matomo will automatically update the `matomo.js` tracker file. 
+When a user installs your plugin, Matomo will automatically update the `matomo.js` tracker file.
 
 ### Adding additional tracker methods
 
@@ -63,7 +63,7 @@ function init() {
             enableTracker = false;
         }
     };
-    
+
     Matomo.on('TrackerSetup', function (tracker) {
         tracker.MyPlugin = {
             trackme: function () {
@@ -85,7 +85,7 @@ _paq.push(['MyPlugin::disableTracking']);
 and the tracker specific method like this (using a dot instead of a double colon):
 
 ```js
-_paq.push(['MyPlugin.trackme']); 
+_paq.push(['MyPlugin.trackme']);
 ```
 
 Most of the time you will want to use a tracker specific tracking method like `trackme`. This allows you for example to send tracking requests and it allows a user to configure each tracker instance separately (when using multiple JS trackers on the same page).
@@ -96,7 +96,7 @@ We recommend to always namespace your tracker methods with your plugin name as d
 ### Hooking into plugin events
 
 You may hook into events to add additional tracking parameters to tracking requests by adding a plugin. Your plugin can then access these added tracking
-parameters server side, store the value in a dimension and provide new reports based on this data. 
+parameters server side, store the value in a dimension and provide new reports based on this data.
 
 ```js
 function init() {
@@ -153,7 +153,7 @@ Matomo triggers a few events on specific actions. You can listen to these events
 List of events:
 
 * `TrackerSetup - (trackerInstance)`. The tracker setup event is triggered as soon as the tracker instance has been created and all the core tracker methods have been defined. At this stage, typically the tracker instance hasn't been configured yet in any way and tracker methods from other non-core plugins like FormAnalytics, MediaAnalytics, and others may not be defined yet. At this stage, the idSite and tracker URL is typically not configured yet. If you need to modify the tracker using such an event, then you typically want to use this event.
-* `TrackerAdded - (trackerInstance)`. The tracker added event is typically triggered when the tracker configuration is completed and the tracker methods  by all custom JS tracker plugins have been defined. Use this event if you need to get configuration information like idSite, or need to configure a custom JS tracker plugin like FormAnalytics or MediaAnalytics. 
+* `TrackerAdded - (trackerInstance)`. The tracker added event is typically triggered when the tracker configuration is completed and the tracker methods  by all custom JS tracker plugins have been defined. Use this event if you need to get configuration information like idSite, or need to configure a custom JS tracker plugin like FormAnalytics or MediaAnalytics.
 * `MatomoInitialized`. This event is triggered when Matomo JS tracker has been loaded and the first tracker has been created. No tracker instance may exist yet under circumstances if the tracker instance is created manually and `_paq.push` is not used.
 
 You can use these events for example to write Matomo plugins or browser extensions to ensure that cookies are disabled, to change behaviour of tracking methods by overwriting them, and more.
