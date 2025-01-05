@@ -20,7 +20,7 @@ To enrich the tracker create a file named `tracker.js` in your Matomo plugin dir
     function init() {
         // Add your plugin code here. For example to enforce disabling cookies:
         window._paq = window._paq || [];
-        winodw._paq.push(['disableCookies']);
+        window._paq.push(['disableCookies']);
     }
 
     if ('object' === typeof window.Matomo) {
